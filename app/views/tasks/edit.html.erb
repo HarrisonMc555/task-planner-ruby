@@ -1,35 +1,35 @@
-<h1>New Task</h1>
+<h1>Edit task</h1>
 
-
-<%= form_with scope: :task, url: tasks_path, local: true do |form| %>
-
+<%= form_with(model: @task, local: true) do |form| %>
+  
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@task.errors.count, "error") %> prohibited this task
-        from being saved:
+        <%= pluralize(@task.errors.count, "error") %> prohibited
+        this task from being saved:
       </h2>
       <ul>
         <% @task.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
-      </ul>
         <% end %>
+      </ul>
     </div>
   <% end %>
-
+  
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
   </p>
   
   <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
   </p>
   
   <p>
     <%= form.submit %>
   </p>
+  
 <% end %>
 
 <%= link_to 'Back', tasks_path %>
