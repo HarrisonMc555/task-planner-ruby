@@ -8,5 +8,33 @@
   <%= @task.description %>
 </p>
 
+<h2>Plans</h2>
+<% @task.plans.each do |plan| %>
+  <p>
+    <strong>Time:</strong>
+    <%= plan.time %>
+  </p>
+  
+  <p>
+    <strong>Description:</strong>
+    <%= plan.description %>
+  </p>
+<% end %>
+
+<h2>Add a plan:</h2>
+<%= form_with(model: [ @task, @task.plans.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :time %><br>
+    <%= form.time_field :time %>
+  </p>
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_field :description %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_task_path(@task) %>
 <%= link_to 'Back', tasks_path %>
