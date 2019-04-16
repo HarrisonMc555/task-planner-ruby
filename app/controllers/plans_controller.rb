@@ -7,6 +7,6 @@ class PlansController < ApplicationController
   
   private
   def plan_params
-    params.require(:plan).permit(:time, :description)
+    params.require(:plan).permit(:when, :description)
   end
 end
