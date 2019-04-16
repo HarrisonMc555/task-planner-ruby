@@ -3,29 +3,43 @@
   <%= @task.title %>
 </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
+<% if @task.when %>
+  <p>
+    <strong>Date:</strong>
+    <%= @task.when %>
+  </p>
+<% end %>
+
+<% if @task.description %>
+  <p>
+    <strong>Description:</strong>
+    <%= @task.description %>
+  </p>
+<% end %>
 
 <h2>Plans</h2>
 <% @task.plans.each do |plan| %>
-  <p>
-    <strong>Time:</strong>
-    <%= plan.time %>
-  </p>
+  <% if plan.when %>
+    <p>
+      <strong>When:</strong>
+      <%= plan.when %>
+    </p>
+  <% end %>
   
-  <p>
-    <strong>Description:</strong>
-    <%= plan.description %>
-  </p>
+  <% if plan.description %>
+    <p>
+      <strong>Description:</strong>
+      <%= plan.description %>
+    </p>
+  <% end %>
+  
 <% end %>
 
 <h2>Add a plan:</h2>
 <%= form_with(model: [ @task, @task.plans.build ], local: true) do |form| %>
   <p>
-    <%= form.label :time %><br>
-    <%= form.time_field :time %>
+    <%= form.label :when %><br>
+    <%= form.datetime_field :when %>
   </p>
   <p>
     <%= form.label :description %><br>
